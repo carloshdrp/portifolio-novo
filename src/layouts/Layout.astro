@@ -15,7 +15,7 @@ const lang = getLangFromUrl(Astro.url);
 const {
   title = "Carlos Henrique - Desenvolvedor Web",
   description = "Portfólio profissional de Carlos Henrique, desenvolvedor web full-stack",
-  image = "/og-images.jpg",
+  image = "../assets/images/homepage.jpeg",
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -42,7 +42,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         optional: {
           description,
           locale: "pt_BR",
-          siteName: "Carlos Henrique",
+          siteName: "Carlos Henrique - Desenvolvedor Web",
         },
       }}
       twitter={{
