@@ -10,7 +10,7 @@ pubDate: 2024-01-23
 
 ## Planejamento e arquitetura
 O desenvolvimento do Genius seguiu uma abordagem de fácil manutenção. O projeto foi dividido em duas principais frentes: cliente (frontend) e servidor (backend).
-``` js
+```
 ├── frontend/             
 │   ├── src/
 │   │   ├── api/           / Métodos de requisição via Redux Toolkit
@@ -59,7 +59,7 @@ O desenvolvimento do Genius seguiu uma abordagem de fácil manutenção. O proje
 - JWT para autenticação através do <a href="https://www.passportjs.org" target="_blank" rel="noopener noreferrer">Passport.js</a>.
 
 ### Desenvolvimento
-- [Documentação da API com o Postman](https://documenter.getpostman.com/view/26689861/2sAYJ4igB1);
+- <a href="https://documenter.getpostman.com/view/26689861/2sAYJ4igB1" target="_blank" rel="noopener noreferrer">Documentação da API com o Postman</a>;
 - Prototipagem das telas no Figma;
 - ESLint para padronização;
 - Prettier para formatação;

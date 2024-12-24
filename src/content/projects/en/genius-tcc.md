@@ -1,6 +1,6 @@
 ---
-title: "Genius: Web platform to assist pre-university students"
-description: "Project presented as a term paper at IFSul in 2024, consisting of a gamified platform that provides resources for students during preparation for university entrance exams."
+title: "Genius: Gamified Educational Platform"
+description: "Full-stack development of an educational platform implementing gamification, permission system, and real-time communication."
 cover: "../images/genius-cover.png"
 tags: ["React", "Node.js", "Express", "AntD", "MySQL", "Socket.io", "TailwindCSS", "Prisma"]
 github: "https://github.com/carloshdrp/TCC-2024"
@@ -11,7 +11,7 @@ pubDate: 2024-01-23
 ## Planning and Architecture
 The development of Genius followed a maintainability-focused approach. The project was divided into two main parts: client (frontend) and server (backend).
 
-``` js
+```
 ├── frontend/
 │   ├── src/
 │   │   ├── api/           / Redux Toolkit API methods
@@ -60,7 +60,7 @@ The development of Genius followed a maintainability-focused approach. The proje
 - JWT authentication using <a href="https://www.passportjs.org" target="_blank" rel="noopener noreferrer">Passport.js</a>.
 
 ### Development Tools
-- [API Documentation with Postman](https://documenter.getpostman.com/view/26689861/2sAYJ4igB1);
+- <a href="https://documenter.getpostman.com/view/26689861/2sAYJ4igB1" target="_blank" rel="noopener noreferrer">API Documentation with Postman</a>
 - UI prototyping in Figma;
 - ESLint for code standardization;
 - Prettier for formatting;
