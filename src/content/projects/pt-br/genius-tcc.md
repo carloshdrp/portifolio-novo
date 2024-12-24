@@ -1,12 +1,38 @@
 ---
-title: "Genius: Plataforma web para auxiliar pré-vestibulandos nos estudos"
-description: "Projeto apresentado como trabalho de conclusão de curso no IFSul em 2024, consiste de uma plataforma gamificada que oferece recursos para os estudantes durante a preparação para os vestibulares."
+title: "Genius: Plataforma Educacional Gamificada"
+description: "Desenvolvimento full-stack de uma plataforma educacional que implementa gamificação, sistema de permissões e comunicação em tempo real."
 cover: "../images/genius-cover.png"
 tags: ["React", "Node.js", "Express", "AntD", "MySQL", "Socket.io", "TailwindCSS", "Prisma"]
 github: "https://github.com/carloshdrp/TCC-2024"
 featured: true
 pubDate: 2024-01-23
 ---
+
+## Planejamento e arquitetura
+O desenvolvimento do Genius seguiu uma abordagem de fácil manutenção. O projeto foi dividido em duas principais frentes: cliente (frontend) e servidor (backend).
+``` js
+├── frontend/             
+│   ├── src/
+│   │   ├── api/           / Métodos de requisição via Redux Toolkit
+│   │   ├── assets/        / Recursos estáticos
+│   │   ├── components/    / Componentes React reutilizáveis
+│   │   ├── config/        / Configurações (Socket.io, variáveis)
+│   │   ├── pages/         / Páginas da aplicação
+│   │   ├── redux/         / Estados e reducers do Redux Toolkit
+│   │   ├── styles/        / Estilização CSS
+│   │   └── utils/         / Funções utilitárias
+│
+├── backend/               
+│   ├── config/            / Configurações do servidor
+│   ├── controllers/       / Controladores de requisições
+│   ├── files/             / Armazenamento de avatares
+│   ├── middlewares/       / Middlewares de autenticação/validação
+│   ├── prisma/            / Schema e migrações do banco
+│   ├── routes/            / Definição de rotas
+│   ├── services/          / Lógica de negócio e operações do Prisma
+│   ├── utils/             / Funções utilitárias
+│   └── validations/       / Schemas de validação com Joi
+```
 
 ## Funcionalidades Principais
 
@@ -32,5 +58,22 @@ pubDate: 2024-01-23
 - <a href="https://www.mysql.com" target="_blank" rel="noopener noreferrer">MySQL</a> como **SGBD** ;
 - JWT para autenticação através do <a href="https://www.passportjs.org" target="_blank" rel="noopener noreferrer">Passport.js</a>.
 
+### Desenvolvimento
+- [Documentação da API com o Postman](https://documenter.getpostman.com/view/26689861/2sAYJ4igB1);
+- Prototipagem das telas no Figma;
+- ESLint para padronização;
+- Prettier para formatação;
+- Controle de versão com GIT.
+
 ## Resultados
 Implementando uma abordagem gamificada para educação, alinhada com as diretrizes da Base Nacional Comum Curricular (BNCC), o projeto foi apresentado e aprovado em novembro de 2024 como requisito para obtenção do grau de Técnico em Informática para Internet no Instituto Federal Sul-rio-grandense, Campus Gravataí.
+
+## Telas
+Tela inicial
+![](../images/genius-cover.png)
+
+Tela de perfil
+![](../images/genius-profile.png)
+
+Tela de denúncias (restrita aos administradores)
+![](../images/genius-report-table.png)
