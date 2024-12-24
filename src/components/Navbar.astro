@@ -1,0 +1,131 @@
+---
+import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+import { Icon } from "astro-icon/components";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+function getLanguageUrl(newLang: string) {
+  const currentPath = Astro.url.pathname;
+  const segments = currentPath.split("/").filter(Boolean);
+
+  if (segments.length <= 1) {
+    return `/${newLang}/`;
+  }
+
+  segments[0] = newLang;
+  return "/" + segments.join("/");
+}
+
+const menuItems = [
+  { href: "#home", label: "home" },
+  { href: "#about-me", label: "about" },
+  { href: "#projects", label: "projects" },
+  { href: "#certifications", label: "certifications" },
+];
+---
+
+<header
+  class="fixed w-full left-0 bg-white/80 dark:bg-gray-950/80 backdrop-blur-md z-50"
+>
+  <Astronav>
+    <div
+      class="container mx-auto px-4 py-3 lg:flex lg:flex-row-reverse lg:justify-between lg:items-center"
+    >
+      <div class="flex justify-between items-center">
+        <MenuIcon
+          class="w-6 h-6 text-gray-800 dark:text-white cursor-pointer lg:hidden"
+        />
+
+        <div class="flex gap-4 items-center">
+          <button
+            id="theme-toggle"
+            class="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+            aria-label="Toggle theme"
+          >
+            <Icon name="mdi:weather-sunny" class="w-5 h-5 hidden dark:block" />
+            <Icon name="mdi:weather-night" class="w-5 h-5 block dark:hidden" />
+          </button>
+
+          <div class="relative group">
+            <button
+              class="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors flex items-center gap-1"
+              aria-label="Select language"
+            >
+              <Icon name="mdi:translate" class="w-5 h-5" />
+              <span class="text-sm font-medium">{lang.toUpperCase()}</span>
+            </button>
+            <div
+              class="absolute right-0 mt-2 py-2 w-32 bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200"
+            >
+              <a
+                href={getLanguageUrl("en")}
+                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+              >
+                {t("nav.lang.english")}
+              </a>
+              <a
+                href={getLanguageUrl("pt-br")}
+                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+              >
+                {t("nav.lang.portuguese")}
+              </a>
+            </div>
+          </div>
+
+          <a
+            href={`/${lang}` + "/get-in-touch"}
+            class="group px-6 py-3 border border-gray-300 dark:border-gray-700 rounded-lg dark:hover:border-primary-100 hover:bg-primary-100/10 hover:border-primary-100 transition-colors"
+          >
+            <span
+              class="relative text-gray-900 dark:text-gray-300 flex items-center gap-2"
+            >
+              {t("nav.contact")}
+              <Icon
+                name="mdi:arrow-top-right"
+                class="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:scale-110"
+              />
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <MenuItems class="hidden w-full lg:flex lg:w-auto">
+        <ul
+          class="flex flex-col lg:flex-row lg:items-center gap-2 mt-4 lg:mt-0 lg:gap-4"
+        >
+          {
+            menuItems.map((item) => (
+              <li>
+                <a
+                  href={`/${lang}/` + item.href}
+                  class="block py-2 px-4 text-gray-700 dark:text-gray-300 hover:text-primary-100 dark:hover:text-primary-100 hover:bg-gray-200 dark:hover:bg-gray-800 rounded transition-colors nav-link"
+                >
+                  {t("nav." + item.label)}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </MenuItems>
+    </div>
+  </Astronav>
+</header>
+
+<script>
+  import { initTheme, setupThemeToggle } from "../utils/theme";
+  import { setupNavigation } from "../utils/navigation";
+
+  initTheme();
+  setupNavigation();
+  setupThemeToggle();
+
+  document.addEventListener("astro:after-swap", () => {
+    initTheme();
+    setupNavigation();
+    setupThemeToggle();
+  });
+
+  document.addEventListener("scroll", setupNavigation);
+</script>

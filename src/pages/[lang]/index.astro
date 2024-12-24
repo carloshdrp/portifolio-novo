@@ -1,0 +1,51 @@
+---
+import Welcome from "../../components/Welcome.astro";
+import Layout from "../../layouts/Layout.astro";
+import AboutMe from "../../components/AboutMe.astro";
+import Projects from "../../components/Projects.astro";
+import { Image } from "@astrojs/image/components";
+import Background1 from "../../assets/background-1.svg";
+import Background2 from "../../assets/background-2.svg";
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: "pt-br" } }, // Gera /pt-br
+    { params: { lang: "en" } }, // Gera /en
+  ];
+}
+
+const { lang } = Astro.params;
+---
+
+<Layout>
+  <div class="relative overflow-x-hidden">
+    <div class="absolute inset-0 -z-10">
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-gray-950"
+      >
+      </div>
+      <Image
+        src={Background1}
+        alt=""
+        width={1440}
+        height={1024}
+        quality={50}
+        format="webp"
+        class="h-screen w-screen object-cover opacity-20 dark:opacity-15 blur-[100px]"
+      />
+      <Image
+        src={Background2}
+        alt=""
+        width={1440}
+        height={1024}
+        quality={50}
+        format="webp"
+        class="absolute inset-0 h-screen w-screen object-cover opacity-20 dark:opacity-15 blur-[100px] translate-y-full"
+      />
+    </div>
+
+    <Welcome />
+    <AboutMe />
+    <Projects />
+  </div>
+</Layout>

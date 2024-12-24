@@ -1,0 +1,58 @@
+---
+import { getCollection } from "astro:content";
+import ProjectCard from "./ProjectCard.astro";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { Icon } from "astro-icon/components";
+import "../styles/animations.css";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const projects = await getCollection("projects", ({ id }) => {
+  return id.startsWith(`${lang}/`);
+});
+---
+
+<section id="projects" class="min-h-screen py-20 relative">
+  <div class="container mx-auto px-4">
+    <h2 class="text-6xl font-bold mb-12 opacity-0" data-animate>
+      <span
+        class="bg-clip-text text-transparent bg-gradient-to-r from-primary-100 to-primary-200"
+      >
+        {t("projects.title")}
+      </span>
+    </h2>
+
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 opacity-0"
+      data-animate
+    >
+      {
+        projects.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            description={project.data.description}
+            cover={project.data.cover}
+            url={`/${lang}/projects/${project.slug.replace(`${lang}/`, "")}`}
+            tags={project.data.tags}
+          />
+        ))
+      }
+    </div>
+
+    <div class="mt-12 text-center opacity-0" data-animate>
+      <a
+        href={`/${lang}/projects`}
+        class="inline-flex items-center gap-2 px-6 py-3 bg-primary-100 text-white rounded-lg hover:bg-primary-200 transition-colors"
+      >
+        {t("projects.viewAll")}
+        <Icon name="mdi:arrow-right" class="w-5 h-5" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { setupAnimations } from "../utils/scrollAnimations.ts";
+  document.addEventListener("astro:page-load", setupAnimations);
+</script>

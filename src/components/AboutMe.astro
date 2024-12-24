@@ -1,0 +1,132 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { Icon } from "astro-icon/components";
+import "../styles/animations.css";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section id="about-me" class="min-h-screen py-20 relative">
+  <div class="container mx-auto px-4">
+    <h2 class="text-6xl font-bold mb-12 opacity-0" data-animate>
+      <span
+        class="bg-clip-text text-transparent bg-gradient-to-r from-primary-100 to-primary-200"
+      >
+        {t("about.title")}
+      </span>
+    </h2>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div class="space-y-6 opacity-0" data-animate>
+        <h3 class="text-2xl font-semibold mb-4">{t("about.journey.title")}</h3>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+          {t("about.journey.description")}
+        </p>
+
+        <div class="mt-8">
+          <h4 class="text-xl font-medium mb-4 flex items-center gap-2">
+            <Icon name="mdi:school-outline" class="w-6 h-6" />
+            {t("about.education.title")}
+          </h4>
+          <div class="space-y-6">
+            <div class="border-l-2 pl-8 border-primary-100">
+              <p class="font-medium">{t("about.education.course2")}</p>
+              <p class="text-sm text-gray-600 dark:text-gray-400">
+                {t("about.education.course2.status")}
+              </p>
+              <p class="text-gray-600 dark:text-gray-400">
+                {t("about.education.institution")}
+              </p>
+            </div>
+            <div class="border-l-2 pl-8 border-primary-100">
+              <p class="font-medium">{t("about.education.course1")}</p>
+              <p class="text-sm text-gray-600 dark:text-gray-400">
+                {t("about.education.course1.status")}
+              </p>
+              <p class="text-gray-600 dark:text-gray-400">
+                {t("about.education.institution")}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8">
+          <h4 class="text-xl font-medium mb-4 flex items-center gap-2">
+            <Icon name="mdi:target" class="w-6 h-6" />
+            {t("about.goals.title")}
+          </h4>
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+            {t("about.goals.description")}
+          </p>
+        </div>
+      </div>
+
+      <div class="space-y-6 opacity-0" data-animate>
+        <div class="grid grid-cols-2 gap-4">
+          <div
+            class="p-4 rounded-lg bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm shadow-lg"
+          >
+            <h5 class="font-medium mb-3 flex items-center gap-2">
+              <Icon name="mdi:code-braces" class="w-5 h-5" />
+              {t("about.skills.tech_stack.title")}
+            </h5>
+            <ul class="space-y-2">
+              {
+                t("about.skills.tech_stack").map((tech: string) => (
+                  <li class="flex items-center gap-2">
+                    <Icon name="mdi:check" class="w-4 h-4 text-primary-100" />
+                    <span>{tech}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <div
+            class="p-4 rounded-lg bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm shadow-lg"
+          >
+            <h5 class="font-medium mb-3 flex items-center gap-2">
+              <Icon name="mdi:tools" class="w-5 h-5" />
+              {t("about.skills.tools.title")}
+            </h5>
+            <ul class="space-y-2">
+              {
+                t("about.skills.tools").map((tool: string) => (
+                  <li class="flex items-center gap-2">
+                    <Icon name="mdi:check" class="w-4 h-4 text-primary-100" />
+                    <span>{tool}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <div
+            class="col-span-2 p-4 rounded-lg bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm shadow-lg"
+          >
+            <h5 class="font-medium mb-3 flex items-center gap-2">
+              <Icon name="mdi:bullseye-arrow" class="w-5 h-5" />
+              {t("about.skills.learning.title")}
+            </h5>
+            <ul class="space-y-2">
+              {
+                t("about.skills.learning").map((item: string) => (
+                  <li class="flex items-center gap-2">
+                    <Icon name="mdi:check" class="w-4 h-4 text-primary-100" />
+                    <span>{item}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { setupAnimations } from "../utils/scrollAnimations.ts";
+  document.addEventListener("astro:page-load", setupAnimations);
+</script>

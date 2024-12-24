@@ -1,0 +1,117 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+import { Image } from "@astrojs/image/components";
+import Background3 from "../../../assets/background-3.svg";
+import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
+import { Icon } from "astro-icon/components";
+
+export async function getStaticPaths() {
+  const allProjects = await getCollection("projects");
+  const languages = ["pt-br", "en"];
+
+  return languages.flatMap((lang) => {
+    const langProjects = allProjects.filter((project) =>
+      project.id.startsWith(`${lang}/`),
+    );
+
+    return langProjects.map((project) => ({
+      params: {
+        lang,
+        slug: project.slug.replace(`${lang}/`, ""),
+      },
+      props: { project },
+    }));
+  });
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title={"Carlos Henrique - " + project.data.title}>
+  <div class="absolute inset-0 -z-10">
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-gray-950"
+    >
+    </div>
+
+    <Image
+      src={Background3}
+      alt=""
+      width={1440}
+      height={1024}
+      quality={50}
+      format="webp"
+      class="h-screen w-screen object-cover opacity-20 dark:opacity-15 blur-[100px]"
+    />
+    <Image
+      src={Background3}
+      alt=""
+      width={1440}
+      height={1024}
+      quality={50}
+      format="webp"
+      class="h-screen w-screen object-cover opacity-20 -rotate-135 dark:opacity-15 blur-[100px]"
+    />
+  </div>
+
+  <article class="container mx-auto px-4 py-8 pt-32">
+    <div class="prose prose-lg dark:prose-invert">
+      <Image
+        src={project.data.cover}
+        alt={project.data.title}
+        width={1440}
+        height={200}
+        quality={80}
+        format="webp"
+        class="h-[350px] hover:h-full transition-all w-full rounded-lg object-cover shadow-lg"
+      />
+      <h1 class="text-5xl font-bold my-5">{project.data.title}</h1>
+      <p class="text-xl">{project.data.description}</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        {
+          project.data.tags.map((tag: string) => (
+            <span class="bg-primary-100/10 text-primary-100 px-2 py-1 rounded-md">
+              {tag}
+            </span>
+          ))
+        }
+      </div>
+
+      <div class="flex gap-4 my-8">
+        {
+          project.data.github && (
+            <a
+              href={project.data.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-6 py-2 bg-primary-100 text-white rounded-lg hover:bg-primary-100/90 transition-colors flex items-center gap-2"
+            >
+              <Icon name="mdi:github" class="w-5 h-5" />
+              {t("projects.github")}
+            </a>
+          )
+        }
+        <a
+          href={project.data.demo}
+          target="_blank"
+          rel="noopener noreferrer"
+          class={`px-6 py-3 border rounded-lg flex items-center gap-2 transition-colors ${
+            project.data.demo
+              ? "border-primary-100 text-primary-100 hover:bg-primary-100/10"
+              : "border-gray-300 text-gray-400 cursor-not-allowed opacity-50"
+          }`}
+          {...!project.data.demo && { onClick: (e) => e.preventDefault() }}
+        >
+          <Icon name="mdi:web" class="w-5 h-5" />
+          {t("projects.demo")}
+        </a>
+      </div>
+
+      <Content />
+    </div>
+  </article>
+</Layout>
