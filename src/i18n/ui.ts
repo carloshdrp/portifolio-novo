@@ -1,13 +1,3 @@
-export const languages = {
-  "pt-br": "Português",
-  en: "English",
-} as const;
-
-export const DEVELOPER_INFO = {
-  name: "Carlos Henrique",
-  skills: ["JavaScript/TypeScript", "React/Next.js", "Node.js", "Astro"],
-} as const;
-
 export const ui = {
   "pt-br": {
     "welcome.greeting": "Olá, eu sou o",
@@ -15,7 +5,6 @@ export const ui = {
       "Prazer em receber você no meu portifólio. Atualmente sou um estudante de Análise e Desenvolvimento de Sistemas no IFSul câmpus gravataí.",
     "welcome.terminal.file": "sobreMim.js",
     "welcome.codeComment": "// Desenvolvedor Full Stack",
-    "welcome.passion": "Construindo experiências incríveis",
     "nav.home": "Início",
     "nav.about": "Sobre Mim",
     "nav.projects": "Projetos",
@@ -72,7 +61,6 @@ export const ui = {
       "Welcome to my portfolio. I am currently a Systems Analysis and Development student at IFSul Gravataí campus.",
     "welcome.terminal.file": "aboutMe.js",
     "welcome.codeComment": "// Full Stack Developer",
-    "welcome.passion": "Building great user experiences",
     "nav.home": "Home",
     "nav.about": "About Me",
     "nav.lang.english": "English",
@@ -98,8 +86,7 @@ export const ui = {
       "JavaScript",
       "Express",
       "Prisma",
-      "MySQL",
-      "PostgreSQL",
+      "SQL",
       "Tailwind CSS",
       "React",
       "Astro",
