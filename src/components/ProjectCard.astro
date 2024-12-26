@@ -1,5 +1,4 @@
 ---
-import { ImageMetadata } from "astro";
 interface Props {
   title: string;
   description: string;
@@ -9,21 +8,20 @@ interface Props {
 }
 
 import { Image } from "@astrojs/image/components";
-import { getLangFromUrl } from "../i18n/utils";
 
 const { title, description, cover, url, tags } = Astro.props;
 ---
 
 <a
   href={url}
-  class="group block p-4 rounded-lg bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm shadow-lg transition-all"
+  class="group block p-4 rounded-lg bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm shadow-lg transition-all"
 >
   <div class="relative aspect-video mb-4 overflow-hidden rounded-lg">
     <Image
       src={cover}
       alt={title}
-      width={1440}
-      height={1024}
+      width={500}
+      height={500}
       quality={50}
       format="webp"
       class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
@@ -39,7 +37,7 @@ const { title, description, cover, url, tags } = Astro.props;
   <div class="flex flex-wrap gap-2">
     {
       tags.map((tag) => (
-        <span class="text-sm px-2 py-1 rounded-full bg-primary-100/10 text-primary-100">
+        <span class="text-sm px-2 py-1 rounded-md bg-primary-100/10 text-primary-100">
           {tag}
         </span>
       ))

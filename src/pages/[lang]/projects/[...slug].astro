@@ -5,10 +5,11 @@ import { Image } from "@astrojs/image/components";
 import Background3 from "../../../assets/background-3.svg";
 import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
 import { Icon } from "astro-icon/components";
+import { ui } from "../../../i18n/ui";
 
 export async function getStaticPaths() {
   const allProjects = await getCollection("projects");
-  const languages = ["pt-br", "en"];
+  const languages = Object.keys(ui);
 
   return languages.flatMap((lang) => {
     const langProjects = allProjects.filter((project) =>
@@ -27,6 +28,7 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await project.render();
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -59,15 +61,15 @@ const t = useTranslations(lang);
   </div>
 
   <article class="container mx-auto px-4 py-8 pt-32">
-    <div class="prose prose-lg dark:prose-invert">
+    <div class="prose prose-lg dark:prose-invert prose-img:rounded-lg">
       <Image
         src={project.data.cover}
         alt={project.data.title}
         width={1440}
-        height={200}
+        height={300}
         quality={80}
         format="webp"
-        class="h-[350px] transition-all w-full rounded-lg object-cover shadow-lg"
+        class="h-[300px] w-full transition-all rounded-lg object-cover shadow-lg"
       />
       <h1 class="text-5xl font-bold my-5">{project.data.title}</h1>
       <p class="text-xl">{project.data.description}</p>
@@ -112,6 +114,17 @@ const t = useTranslations(lang);
       </div>
 
       <Content />
+
+      <a
+        href={`/${lang === "pt-br" ? "" : `${lang}`}`}
+        class="px-6 py-2 bg-primary-100 text-white rounded-lg hover:bg-primary-100/90 transition-colors group flex items-center no-underline justify-center gap-2"
+      >
+        <Icon
+          name="mdi:arrow-left"
+          class="w-5 h-5 group-hover:-translate-x-2 transition-transform"
+        />
+        {t("projects.back")}
+      </a>
     </div>
   </article>
 </Layout>

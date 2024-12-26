@@ -2,38 +2,40 @@ export function setupNavigation() {
   const sections = document.querySelectorAll("section[id]");
   const navLinks = document.querySelectorAll(".nav-link");
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        const currentId = entry.target.id;
-        const currentLink = Array.from(navLinks).find(
-          (link) => link.getAttribute("href") === `#${currentId}`,
-        );
+  const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
 
-        if (entry.isIntersecting) {
-          navLinks.forEach((link) => {
-            link.classList.remove(
-              "text-primary-100",
-              "dark:text-primary-100",
-              "bg-gray-100",
-              "dark:bg-gray-800",
-            );
-          });
+      const sectionId = entry.target.id;
+      updateActiveLink(sectionId, navLinks);
+    });
+  };
 
-          currentLink?.classList.add(
-            "text-primary-100",
-            "dark:text-primary-100",
-            "bg-gray-100",
-            "dark:bg-gray-800",
-          );
-        }
+  const updateActiveLink = (sectionId: string, links: NodeListOf<Element>) => {
+    const activeClasses = [
+      "bg-primary-100/10",
+      "text-primary-100",
+      "dark:text-primary-100",
+    ];
+
+    links.forEach((link) => {
+      const href = link.getAttribute("href");
+      const cleanHref = href?.split("#").pop();
+      const isActive = cleanHref === sectionId;
+
+      activeClasses.forEach((className) => {
+        link.classList.toggle(className, isActive);
       });
-    },
-    {
-      threshold: 0.3,
-      rootMargin: "-20% 0px -20% 0px",
-    },
-  );
+    });
+  };
+
+  const observer = new IntersectionObserver(handleIntersection, {
+    threshold: 0.3,
+    rootMargin: "-20% 0px -20% 0px",
+  });
 
   sections.forEach((section) => observer.observe(section));
+
+  // Cleanup function
+  return () => observer.disconnect();
 }
