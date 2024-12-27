@@ -1,7 +1,7 @@
 ---
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 import { Icon } from "astro-icon/components";
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -106,7 +106,7 @@ const menuItems = [
                   data-nav-link={item.label}
                   class="block py-2 px-4 text-gray-700 dark:text-gray-300 hover:text-primary-100 dark:hover:text-primary-100 hover:bg-primary-100/10 dark:hover:bg-primary-100/10 hover:border-primary-100 hover:border border-solid rounded transition-all nav-link"
                 >
-                  {t("nav." + item.label)}
+                  {t(`nav.${item.label}`)}
                 </a>
               </li>
             ))

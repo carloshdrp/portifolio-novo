@@ -1,5 +1,9 @@
 ---
-import Index from "./[lang]/index.astro";
+import IndexPage from "./[lang]/index.astro";
+import { getStaticPaths } from "./[lang]/index.astro";
+export { getStaticPaths };
+
+const { lang = "pt-br" } = Astro.params;
 ---
 
-<Index />
+<IndexPage lang={lang} />

@@ -1,8 +1,8 @@
 ---
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import { Icon } from "astro-icon/components";
 import "../styles/animations.css";
 import "../styles/terminal.css";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

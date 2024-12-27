@@ -2,37 +2,19 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
-import image from "@astrojs/image";
 import icon from "astro-icon";
 import robotsTxt from "astro-robots-txt";
 import webmanifest from "astro-webmanifest";
 
 export default defineConfig({
   site: "https://carloshdrp.com.br",
-
-  i18n: {
-    locales: ["pt-br", "en"],
-    defaultLocale: "pt-br",
-    routing: {
-      prefixDefaultLocale: false,
-      redirectToDefaultLocale: true,
-    },
+  build: {
+    assets: "_files/",
   },
 
   integrations: [
     tailwind(),
-    sitemap({
-      i18n: {
-        defaultLocale: "pt-br",
-        locales: {
-          "pt-br": "pt-BR",
-          en: "en-US",
-        },
-      },
-    }),
-    image({
-      serviceEntryPoint: "@astrojs/image/sharp",
-    }),
+    sitemap(),
     icon(),
     robotsTxt(),
     webmanifest({

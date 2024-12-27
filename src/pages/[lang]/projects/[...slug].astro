@@ -1,22 +1,27 @@
 ---
 import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import Layout from "../../../layouts/Layout.astro";
-import { Image } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 import Background3 from "../../../assets/background-3.svg";
-import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
 import { Icon } from "astro-icon/components";
-import { ui } from "../../../i18n/ui";
+import type { ProjectData } from "../../../types/components";
+import type { GetStaticPathsResult } from "astro";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
 
-export async function getStaticPaths() {
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+export async function getStaticPaths(): Promise<GetStaticPathsResult> {
   const allProjects = await getCollection("projects");
-  const languages = Object.keys(ui);
+  const languages = ["en", "pt-br"];
 
   return languages.flatMap((lang) => {
-    const langProjects = allProjects.filter((project) =>
+    const langProjects = allProjects.filter((project: ProjectData) =>
       project.id.startsWith(`${lang}/`),
     );
 
-    return langProjects.map((project) => ({
+    return langProjects.map((project: ProjectData) => ({
       params: {
         lang,
         slug: project.slug.replace(`${lang}/`, ""),
@@ -26,11 +31,14 @@ export async function getStaticPaths() {
   });
 }
 
-const { project } = Astro.props;
+const { project } = Astro.props as Props;
 const { Content } = await project.render();
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const handlePreventDefault = (e: MouseEvent) => e.preventDefault();
 ---
 
 <Layout title={"Carlos Henrique - " + project.data.title}>
@@ -106,7 +114,7 @@ const t = useTranslations(lang);
               ? "border-primary-100 text-primary-100 hover:bg-primary-100/10"
               : "border-gray-300 text-gray-400 cursor-not-allowed opacity-50"
           }`}
-          {...!project.data.demo && { onClick: (e) => e.preventDefault() }}
+          {...!project.data.demo && { handlePreventDefault }}
         >
           <Icon name="mdi:web" class="w-5 h-5" />
           {t("projects.demo")}

@@ -1,15 +1,9 @@
 ---
-interface Props {
-  title: string;
-  description: string;
-  cover: ImageMetadata;
-  url: string;
-  tags: string[];
-}
+import type { ProjectCardProps } from "@/types/components";
+import { Image } from "astro:assets";
 
-import { Image } from "@astrojs/image/components";
-
-const { title, description, cover, url, tags } = Astro.props;
+const props = Astro.props as ProjectCardProps;
+const { title, description, cover, url, tags } = props;
 ---
 
 <a
@@ -23,6 +17,8 @@ const { title, description, cover, url, tags } = Astro.props;
       width={500}
       height={500}
       quality={50}
+      loading="lazy"
+      decoding="async"
       format="webp"
       class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
     />
@@ -36,7 +32,7 @@ const { title, description, cover, url, tags } = Astro.props;
 
   <div class="flex flex-wrap gap-2">
     {
-      tags.map((tag) => (
+      tags.map((tag: string) => (
         <span class="text-sm px-2 py-1 rounded-md bg-primary-100/10 text-primary-100">
           {tag}
         </span>

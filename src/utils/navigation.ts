@@ -36,6 +36,5 @@ export function setupNavigation() {
 
   sections.forEach((section) => observer.observe(section));
 
-  // Cleanup function
   return () => observer.disconnect();
 }

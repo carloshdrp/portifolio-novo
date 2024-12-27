@@ -1,15 +1,20 @@
 ---
 import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import ProjectCard from "./ProjectCard.astro";
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
-import "../styles/animations.css";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const projects = await getCollection("projects", ({ id }) => {
+interface ProjectEntry {
+  id: string;
+  [key: string]: unknown;
+}
+
+const projects = (await getCollection("projects", ({ id }: ProjectEntry) => {
   return id.startsWith(`${lang}/`);
-});
+})) as CollectionEntry<"projects">[];
 ---
 
 <section id="projects" class="min-h-screen py-20 relative">
@@ -28,13 +33,15 @@ const projects = await getCollection("projects", ({ id }) => {
     >
       {
         projects.map((project) => (
-          <ProjectCard
-            title={project.data.title}
-            description={project.data.description}
-            cover={project.data.cover}
-            url={`/${lang}/projects/${project.slug.replace(`${lang}/`, "")}`}
-            tags={project.data.tags}
-          />
+          <Fragment>
+            <ProjectCard
+              title={project.data.title}
+              description={project.data.description}
+              cover={project.data.cover}
+              url={`/${lang}/projects/${project.slug.replace(`${lang}/`, "")}`}
+              tags={project.data.tags}
+            />
+          </Fragment>
         ))
       }
     </div>

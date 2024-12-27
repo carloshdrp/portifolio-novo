@@ -1,8 +1,8 @@
 ---
 import { SEO } from "astro-seo";
 import Navbar from "../components/Navbar.astro";
-import { getLangFromUrl } from "../i18n/utils";
 import { ClientRouter } from "astro:transitions";
+import { getLangFromUrl } from "@i18n/utils";
 
 interface Props {
   title?: string;
@@ -10,14 +10,13 @@ interface Props {
   image?: string;
 }
 
-const lang = getLangFromUrl(Astro.url);
-
 const {
   title = "Carlos Henrique - Desenvolvedor Web",
   description = "Portfólio profissional de Carlos Henrique, desenvolvedor web full-stack",
   image = "../assets/images/homepage.jpeg",
 } = Astro.props;
 
+const lang = getLangFromUrl(Astro.url);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 

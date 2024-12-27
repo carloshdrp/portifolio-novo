@@ -1,10 +1,14 @@
 ---
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import { Icon } from "astro-icon/components";
 import "../styles/animations.css";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const techStack = t("about.skills.tech_stack.items") || [];
+const tools = t("about.skills.tools.items") || [];
+const learning = t("about.skills.learning.items") || [];
 ---
 
 <section id="about-me" class="min-h-screen py-20 relative">
@@ -31,7 +35,7 @@ const t = useTranslations(lang);
           </h4>
           <div class="space-y-6">
             <div class="border-l-2 pl-8 border-primary-100">
-              <p class="font-medium">{t("about.education.course2")}</p>
+              <p class="font-medium">{t("about.education.course2.title")}</p>
               <p class="text-sm text-gray-600 dark:text-gray-400">
                 {t("about.education.course2.status")}
               </p>
@@ -40,7 +44,7 @@ const t = useTranslations(lang);
               </p>
             </div>
             <div class="border-l-2 pl-8 border-primary-100">
-              <p class="font-medium">{t("about.education.course1")}</p>
+              <p class="font-medium">{t("about.education.course1.title")}</p>
               <p class="text-sm text-gray-600 dark:text-gray-400">
                 {t("about.education.course1.status")}
               </p>
@@ -73,12 +77,13 @@ const t = useTranslations(lang);
             </h5>
             <ul class="space-y-2">
               {
-                t("about.skills.tech_stack").map((tech: string) => (
-                  <li class="flex items-center gap-2">
-                    <Icon name="mdi:check" class="w-4 h-4 text-primary-100" />
-                    <span>{tech}</span>
-                  </li>
-                ))
+                Array.isArray(techStack) &&
+                  techStack.map((tech: string[]) => (
+                    <li class="flex items-center gap-2">
+                      <Icon name="mdi:check" class="w-4 h-4 text-primary-100" />
+                      <span>{tech}</span>
+                    </li>
+                  ))
               }
             </ul>
           </div>
@@ -92,18 +97,19 @@ const t = useTranslations(lang);
             </h5>
             <ul class="space-y-2">
               {
-                t("about.skills.tools").map((tool: string) => (
-                  <li class="flex items-center gap-2">
-                    <Icon name="mdi:check" class="w-4 h-4 text-primary-100" />
-                    <span>{tool}</span>
-                  </li>
-                ))
+                Array.isArray(tools) &&
+                  tools.map((tool: string) => (
+                    <li class="flex items-center gap-2">
+                      <Icon name="mdi:check" class="w-4 h-4 text-primary-100" />
+                      <span>{tool}</span>
+                    </li>
+                  ))
               }
             </ul>
           </div>
 
           <div
-            class="col-span-2 p-4 rounded-lg bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm shadow-lg"
+            class="p-4 rounded-lg bg-white/50 col-span-2 dark:bg-gray-800/50 backdrop-blur-sm shadow-lg"
           >
             <h5 class="font-medium mb-3 flex items-center gap-2">
               <Icon name="mdi:bullseye-arrow" class="w-5 h-5" />
@@ -111,12 +117,13 @@ const t = useTranslations(lang);
             </h5>
             <ul class="space-y-2">
               {
-                t("about.skills.learning").map((item: string) => (
-                  <li class="flex items-center gap-2">
-                    <Icon name="mdi:check" class="w-4 h-4 text-primary-100" />
-                    <span>{item}</span>
-                  </li>
-                ))
+                Array.isArray(learning) &&
+                  learning.map((learn: string) => (
+                    <li class="flex items-center gap-2">
+                      <Icon name="mdi:check" class="w-4 h-4 text-primary-100" />
+                      <span>{learn}</span>
+                    </li>
+                  ))
               }
             </ul>
           </div>
