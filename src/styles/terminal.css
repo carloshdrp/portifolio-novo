@@ -1,64 +1,76 @@
 /* src/styles/terminal.css */
 @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 @keyframes typing {
-    from { width: 0; opacity: 1; }
-    to { width: 100%; opacity: 1; }
+  from {
+    width: 0;
+    opacity: 1;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
 }
 
 .cursor {
-    animation: blink 1s step-end infinite;
-    background-color: currentColor;
+  animation: blink 1s step-end infinite;
+  background-color: currentColor;
 }
 
 .typing-command-wrapper {
-    display: inline-flex;
-    align-items: center;
+  display: inline-flex;
+  align-items: center;
 }
 
 .typing-text {
-    white-space: nowrap;
-    overflow: hidden;
-    display: inline-block;
-    opacity: 1;
-    width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  opacity: 1;
+  width: 0;
 }
 
 .command-cursor {
-    display: inline-block;
-    width: 2px;
-    height: 1em;
-    background-color: currentColor;
-    margin-left: 1px;
-    animation: blink 1s step-end infinite;
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: currentColor;
+  margin-left: 1px;
+  animation: blink 1s step-end infinite;
 }
 
 .command-cursor.hide {
-    opacity: 0;
-    display: none;
+  opacity: 0;
+  display: none;
 }
 
 .typing-active .typing-text {
-    animation: typing 1.5s steps(30, end) forwards;
+  animation: typing 1.5s steps(30, end) forwards;
 }
 
 .show {
-    opacity: 1 !important;
+  opacity: 1 !important;
 }
 
 pre {
-    margin: 0;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+  margin: 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 pre::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 code {
-    font-family: "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-family: "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier,
+    monospace;
 }

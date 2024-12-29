@@ -1,4 +1,5 @@
 import defaultTheme from "tailwindcss/defaultTheme";
+import typographyPlugin from "@tailwindcss/typography";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -18,7 +19,7 @@ export default {
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            maxWidth: "none", // Remove width limit
+            maxWidth: "none",
             h1: {
               marginTop: "0",
               marginBottom: "0.5em",
@@ -56,5 +57,5 @@ export default {
       }),
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [typographyPlugin],
 };

@@ -7,7 +7,7 @@ export function getLangFromUrl(url: URL) {
 
 type NestedKeyOf<ObjectType extends object> = {
   [Key in keyof ObjectType & (string | number)]: ObjectType[Key] extends object
-    ? `${Key}` | `${Key}.${NestedKeyOf<ObjectType[Key]>}`
+    ? `${Key}` | `${Key}.${NestedKeyOf<ObjectType[Key]>}` | `${Key}.${string}`
     : `${Key}`;
 }[keyof ObjectType & (string | number)];
 

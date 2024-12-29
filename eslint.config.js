@@ -1,41 +1,57 @@
 import eslint from "@eslint/js";
-import tseslint from "typescript-eslint";
+import tsPlugin from "@typescript-eslint/eslint-plugin";
+import tsParser from "@typescript-eslint/parser";
 import astroPlugin from "eslint-plugin-astro";
 import prettierConfig from "eslint-config-prettier";
 
 export default [
-  eslint.configs.recommended,
-  ...tseslint.configs.recommended,
+  {
+    ignores: ["node_modules/", "dist/", ".astro/", "public/"],
+  },
+  {
+    files: ["**/*.{js,mjs}"],
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+    },
+    rules: {
+      ...eslint.configs.recommended.rules,
+    },
+  },
+  {
+    files: ["**/*.{ts,tsx}"],
+    languageOptions: {
+      parser: tsParser,
+      ecmaVersion: "latest",
+      sourceType: "module",
+    },
+    plugins: {
+      "@typescript-eslint": tsPlugin,
+    },
+    rules: {
+      ...tsPlugin.configs.recommended.rules,
+    },
+  },
   {
     files: ["**/*.astro"],
-    plugins: {
-      astro: astroPlugin,
-    },
     languageOptions: {
       parser: astroPlugin.parser,
       parserOptions: {
-        parser: "@typescript-eslint/parser",
         extraFileExtensions: [".astro"],
         sourceType: "module",
       },
-      globals: {
-        Astro: "readonly",
-        Fragment: "readonly",
-      },
+    },
+    plugins: {
+      astro: astroPlugin,
     },
     rules: {
       ...astroPlugin.configs.recommended.rules,
-      "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
-      "@typescript-eslint/no-explicit-any": "warn",
-      "@typescript-eslint/triple-slash-reference": "off",
     },
   },
   {
-    files: ["**/*.ts"],
-    ...tseslint.configs.recommended,
+    files: ["**/*.{js,mjs,ts,tsx,astro}"],
     rules: {
-      "@typescript-eslint/no-explicit-any": "warn",
+      ...prettierConfig.rules,
     },
   },
-  prettierConfig,
 ];

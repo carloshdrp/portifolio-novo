@@ -78,7 +78,7 @@ const learning = t("about.skills.learning.items") || [];
             <ul class="space-y-2">
               {
                 Array.isArray(techStack) &&
-                  techStack.map((tech: string[]) => (
+                  techStack.map((tech: string) => (
                     <li class="flex items-center gap-2">
                       <Icon name="mdi:check" class="w-4 h-4 text-primary-100" />
                       <span>{tech}</span>

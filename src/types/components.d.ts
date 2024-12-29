@@ -9,13 +9,18 @@ export interface SkillSection {
 }
 
 export interface ProjectCardProps {
-  title: string;
-  description: string;
-  cover: ImageMetadata;
-  url: string;
-  tags: string[];
-  github?: string;
-  demo?: string;
+  id: string;
+  metadata: {
+    title: string;
+    description: string;
+    cover: ImageMetadata;
+  };
+  links: {
+    url: string;
+    github?: string;
+    demo?: string;
+  };
+  tags: ReadonlyArray<string>;
 }
 
 export interface ProjectData {

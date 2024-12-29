@@ -1,48 +1,80 @@
-# Astro Starter Kit: Basics
+# Carlos Henrique's Portfolio Website
+A responsive and performant portfolio website showcasing my work as a Full Stack Web Developer.
 
-```sh
-npm create astro@latest -- --template basics
+## Project Overview 📦
+This project leverages the Astro framework for blazing-fast builds, with static-site generation, and server-side rendering capabilities, all while following development best practices like Clean Code, TDD, and i18n.
+
+## Getting Started 🚀
+### Prerequisites
+* Node.js >= 14.0.0
+* NPM or Yarn (install globally or use nvm)
+
+### Setup
+```bash
+git clone [your-github-repo-url]
+cd portfolio-website
+npm install
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+### Development
+```bash
+npm run dev
 ```
+This command will set up a local development server and open the website in your browser at the default port specified in the configuration file (astro.config.mjs).
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+### Building for Production
+```bash
+npm run build
+```
+A production-ready build will be generated in the ./dist folder.
 
-## 🧞 Commands
+### Previewing the Build
+```bash
+npm run preview
+```
+This will start a local server with the production build for testing.
 
-All commands are run from the root of the project, from a terminal:
+### Usage ⚙️
+**Local Development**: Use `npm run dev` to start the development server.
+- Live Reloading: Changes to the source code will be reflected immediately in the browser.
+- Type Checking: TypeScript with strict mode ensures type safety.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+**Deploying:**
+- GitHub Pages: Automate deployments to GitHub Pages using the provided CI/CD pipeline.
+- Vercel: Deploying to Vercel is easy due to Astro's compatibility with Vercel's serverless functions.
 
-## 👀 Want to learn more?
+### Features 🎨
+**i18n**: Full internationalization support with URL-based language switching.
+**SEO Optimized**: Astro's out-of-the-box SEO features ensure all pages index well with search engines.
+**Performance**: Few client-side JavaScript, lazy-loading images, and server-rendered content for optimal user experience.
+**Animated Sections**: Scroll animations for an engaging user experience.
+**Responsive Design**: Built with Tailwind CSS for a seamless responsive design.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### Technical Details 🛠️
+**Frontend**
+- Framework: Astro v5.1.1 - A meta-framework for modern web development
+- Styling: Tailwind CSS for utility-first styling
+- TypeScript: For type-safe JavaScript development
+
+**Development Tools**
+- Linting and Formatting: ESLint with TypeScript plugin and Prettier
+
+**CI/CD**
+- GitHub Actions: Automates build and deployment to GitHub Pages
+
+### Best Practices 📚
+- Clean Code: Following Clean Code principles for readability and maintainability
+- Internationalization: Deeply integrated i18n support for a multilingual website
+- Accessibility: Semantic HTML, ARIA attributes, and color contrast ratios are considered
+- Performance: Optimized image handling, CSS/JS minification, and appropriate HTTP caching
+
+### Contributing 🔧
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/your-branch-name`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin feature/your-branch-name`)
+5. Open a pull request
+Please adhere to the coding standards defined in this repository and follow the Structure and Organization guidelines.
+
+### License 📜
+This project is licensed under the MIT License - see the LICENSE.md file for details.
