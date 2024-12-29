@@ -11,7 +11,7 @@ tags:
     "ESLint",
     "GitHub Actions",
   ]
-github: "https://github.com/carloshdrp/portfolio-novo"
+github: "https://github.com/carloshdrp/portifolio-novo"
 demo: "https://carloshdrp.com.br"
 featured: true
 pubDate: 2024-01-23
