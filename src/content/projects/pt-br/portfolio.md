@@ -17,72 +17,36 @@ featured: true
 pubDate: 2024-01-23
 ---
 
-## Objetivos do Projeto
-- Criar uma plataforma que apresente meus trabalhos de forma profissional;
-- Demonstrar domínio de tecnologias modernas do mercado;
-- Implementar boas práticas de desenvolvimento e arquitetura;
-- Garantir desempenho e acessibilidade;
-- Possibilitar internacionalização completa do conteúdo;
+## 🔍 Destaques do Projeto  
+Este projeto oferece uma apresentação profissional dos meus trabalhos e habilidades, demonstrando domínio técnico em tecnologias atuais como Astro, TypeScript e TailwindCSS. Seguindo boas práticas de desenvolvimento, ele inclui acessibilidade, arquitetura eficiente e código limpo, além de contar com internacionalização completa, suportando português e inglês de forma dinâmica.
 
-## Tecnologias Utilizadas
-### Framework e Ferramentas
-- Astro como framework principal 
-- TypeScript para tipagem estática 
-- TailwindCSS para estilização 
-- ESLint e Prettier para qualidade de código 
-- Git para controle de versão 
-- GitHub Actions para CI/CD 
+## 🛠️ Tecnologias e Recursos  
+Para garantir um site rápido e performático, utilizei o Astro na criação de páginas estáticas, combinado com TypeScript para maior confiabilidade no código e TailwindCSS para uma estilização moderna e responsiva. A qualidade e padronização são mantidas com ferramentas como ESLint e Prettier, enquanto a integração com GitHub Actions automatiza processos de CI/CD.
 
-### Desempenho e SEO 
-No projeto, foram implementadas diversas otimizações, como: 
-- Geração estática com Astro;
-- Lazy loading de imagens;
-- Minificação do código-fonte para produção;
-- Sitemap, robots.txt e web manifest automáticos;
+### 🌟 Foco em Performance e SEO  
+Técnicas de otimização forma utilizadas para garantir alto desempenho, com geração estática de páginas, lazy loading para carregamento eficiente de imagens e código compacto para produção. Além disso, oferece suporte automático para sitemap, robots.txt e web manifest, assegurando uma excelente experiência de usuário e otimização para motores de busca.
 
-### Internacionalização
+### 🌍 Internacionalização
 O site possui suporte completo, tanto na interface quanto nas postagens, para os idiomas português e inglês, com detecção automática do idioma baseado nas preferências de navegador do visitante e conforme a rota utilizada.
 
 ### Interface e Experiência
-- Design responsivo 
-- Tema claro/escuro 
-- Animações suaves 
+O design é totalmente responsivo, com suporte a temas claro e escuro, além de animações suaves e interativas que tornam a navegação mais envolvente.
 
 ## Estrutura de diretórios:
-```
-└── /./                
-    ├── public/
-    │   └── fonts/            
-    ├── .github/            
-    │   └── workflows/         # Workflows de CI/CD
-    └── src/
-        ├── types/             # Definições de tipos TypeScript
-        ├── content/           # Projetos do portfólio em Markdown
-        │   └── projects/  
-        │       ├── images/
-        │       ├── pt-br/
-        │       └── en/
-        ├── utils/              # Funções utilitárias
-        ├── styles/             # Estilos CSS globais
-        ├── components/         # Componentes Astro reutilizáveis
-        ├── layouts/            # Layouts base das páginas
-        ├── i18n/               # Arquivos de tradução e métodos auxiliares
-        ├── assets/             # Recursos estáticos 
-        │   └── images/         # Imagens do site
-        └── pages/              # Rotas da aplicação
-            └── [lang]/ 
-                └── projects/ 
-                    └── [...slug].astro 
-```
+- `public/` – Arquivos estáticos do projeto (imagens, fontes).
+- `src/content/` – Conteúdo do portfólio em Markdown com suporte a múltiplos idiomas.
+- `src/components/` – Componentes reutilizáveis.
+- `src/layouts/` – Layouts padrão para as páginas.
+- `src/i18n/` – Arquivos de tradução e detecção de idioma.
+- `src/styles/` – Estilos globais com TailwindCSS.
 
 ## Telas
-Tela inicial
+#### Tela inicial
 ![](../images/portfolio-cover.jpeg)
 
-Tela de projeto
+#### Tela interna de projetos
 ![](../images/portfolio-project.jpeg)
 
-
-
-
-O código-fonte completo está disponível no GitHub como referência para outros desenvolvedores.
+## 🚀 Explore Mais
+Todo o código-fonte está disponível no GitHub para referência e uso por outros desenvolvedores.
+Se você deseja saber mais, entre em contato. Fico sempre animado para compartilhar ideias e aprender com a comunidade!
